@@ -1,6 +1,11 @@
 " Simple navigation and editing key bindings from emacs, for Vim.
 " Inspired by a much more comprehensive plugin: Vimacs, by Andre Pang.
 
+" on macvim, use option as meta key
+if has("gui_macvim")
+  set macmeta
+endif
+
 " Emacs navigation and editing bindings in all modes
 noremap <C-p> gk
 noremap <C-n> gj
