@@ -1,56 +1,69 @@
 " Simple navigation and editing key bindings from emacs, for Vim.
 " Inspired by a much more comprehensive plugin: Vimacs, by Andre Pang.
 
+" TODO
+"   normal and insert mode:
+"     - when cursor is on first non-blank character, <C-a> should go to beginning of line
+"   insert mode
+"     - when line is blank, <C-k> should delete entire line
+"   command mode:
+"     - <C-k> and <M-d> should not open command window
+
 " on macvim, use option as meta key
 if has("gui_macvim")
   set macmeta
 endif
 
-" Emacs navigation and editing bindings in all modes
-noremap <C-p> gk
-noremap <C-n> gj
-noremap <C-b> h
-noremap <C-f> l
-noremap <C-a> ^
-noremap <C-e> $
-noremap <M-f> w
-noremap <M-b> b
-noremap <M-a> {
-noremap <M-e> }
-noremap <C-d> dl
-noremap <C-h> dh
-noremap <M-d> dw
-noremap <M-h> db
-noremap <C-k> D
-noremap! <C-p> <Up>
-noremap! <C-n> <Down>
-noremap! <C-b> <Left>
-noremap! <C-f> <Right>
-noremap! <C-e> <End>
-noremap! <C-d> <Del>
-noremap! <C-h> <BS>
-inoremap <C-a> <C-o>^
-inoremap <M-b> <C-o>b
-inoremap <M-f> <C-o>e<Right>
-inoremap <M-a> <C-o>{
-inoremap <M-e> <C-o>}
-inoremap <M-d> <C-o>dw
-inoremap <M-h> <C-w>
-inoremap <C-k> <C-o>D
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-cnoremap <C-a> <Home>
-cnoremap <M-f> <S-Right>
-cnoremap <M-b> <S-Left>
-cnoremap <M-a> <Home>
-cnoremap <M-e> <End>
-cnoremap <M-h> <C-w>
-cnoremap <M-d> <C-f>dwl<C-c>
-cnoremap <C-k> <C-f>D<C-c><End>
+" normal mode
+"  - navigation
+map <C-p> gk
+map <C-n> gj
+map <C-b> h
+map <C-f> l
+map <C-a> ^
+map <C-e> $
+map <M-b> b
+map <M-f> e
+map <M-a> {
+map <M-e> }
 
-" todo: get <C-k> and <M-d> to work right in command-line mode (w/o opening up command window)
+" insert mode
+"  - navigation
+imap <C-p> <Up>
+imap <C-n> <Down>
+imap <C-b> <Left>
+imap <C-f> <Right>
+imap <C-a> <C-o>^
+imap <C-e> <End>
+imap <M-b> <C-o>b
+imap <M-f> <C-o>e<Right>
+imap <M-a> <C-o>{
+imap <M-e> <C-o>}
+"  - editing
+imap <C-d> <Del>
+imap <C-h> <BS>
+imap <M-d> <C-o>dw
+imap <M-h> <C-w>
+imap <C-k> <C-o>D
 
-" Emacs key bindings in Command-T configuration
+" command line mode
+"  - navigation
+cmap <C-p> <Up>
+cmap <C-n> <Down>
+cmap <C-b> <Left>
+cmap <C-f> <Right>
+cmap <C-a> <Home>
+cmap <C-e> <End>
+cmap <M-f> <S-Right>
+cmap <M-b> <S-Left>
+cmap <M-a> <Home>
+cmap <M-e> <End>
+"  - editing
+cmap <M-h> <C-w>
+cmap <M-d> <C-f>dwl<C-c>
+cmap <C-k> <C-f>D<C-c><End>
+
+" in Command-T window
 let g:CommandTAcceptSelectionTabMap='<C-CR>'
 let g:CommandTBackspaceMap='<C-h>'
 let g:CommandTDeleteMap='<C-d>'
