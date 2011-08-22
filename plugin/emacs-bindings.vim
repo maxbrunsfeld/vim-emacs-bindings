@@ -7,7 +7,7 @@
 "   insert mode
 "     - when line is blank, <C-k> should delete entire line
 "   command mode:
-"     - <C-k> and <M-d> should not open command window
+"     - <C-k> should not open command window
 
 " on macvim, use option as meta key
 if has("gui_macvim")
