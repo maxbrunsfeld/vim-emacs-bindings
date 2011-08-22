@@ -59,14 +59,17 @@ cmap <M-b> <S-Left>
 cmap <M-a> <Home>
 cmap <M-e> <End>
 "  - editing
-cmap <M-h> <C-w>
-cmap <M-d> <C-f>dwl<C-c>
-cmap <C-k> <C-f>D<C-c><End>
+cnoremap <C-d> <Del>
+cnoremap <C-h> <BS>
+cnoremap <M-h> <C-w>
+cnoremap <M-d> <C-f>dwl<C-c>
+cnoremap <C-k> <C-f>D<C-c><End>
 
-" in Command-T window
-let g:CommandTAcceptSelectionTabMap='<C-CR>'
-let g:CommandTBackspaceMap='<C-h>'
-let g:CommandTDeleteMap='<C-d>'
+" command-T window
+"  - navigation
 let g:CommandTCursorLeftMap='<C-b>'
 let g:CommandTCursorRightMap='<C-f>'
+"  - editing
+let g:CommandTBackspaceMap='<C-h>'
+let g:CommandTDeleteMap='<C-d>'
 
