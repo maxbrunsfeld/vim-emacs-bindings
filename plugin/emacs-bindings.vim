@@ -43,7 +43,7 @@ imap <M-e> <C-o>}
 imap <C-d> <Del>
 imap <C-h> <BS>
 imap <M-d> <C-o>dw
-imap <M-h> <C-o>db
+imap <M-h> <Space><Left><C-o>db<Del>
 imap <C-k> <C-o>D
 
 " command line mode
