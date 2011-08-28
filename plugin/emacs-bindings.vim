@@ -66,10 +66,8 @@ cnoremap <M-d> <C-f>dwl<C-c>
 cnoremap <C-k> <C-f>D<C-c><End>
 
 " command-T window
-"  - navigation
-let g:CommandTCursorLeftMap='<C-b>'
-let g:CommandTCursorRightMap='<C-f>'
-"  - editing
-let g:CommandTBackspaceMap='<C-h>'
-let g:CommandTDeleteMap='<C-d>'
+let g:CommandTCursorLeftMap  = ['<Left>',  '<C-b>']
+let g:CommandTCursorRightMap = ['<Right>', '<C-f>']
+let g:CommandTBackspaceMap   = ['<BS>',    '<C-h>']
+let g:CommandTDeleteMap      = ['<Del>',   '<C-d>']
 
