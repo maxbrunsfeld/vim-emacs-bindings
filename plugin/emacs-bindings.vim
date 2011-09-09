@@ -21,9 +21,9 @@ endfunction
 function! EmacsKillLine()
   let rest_of_line = getbufline("%", line('.'))[0][col('.') :]
   if len(rest_of_line) > 0
-    normal D
+    normal! D
   else
-    normal Jh
+    normal! Jh
   endif
 endfunction
 
