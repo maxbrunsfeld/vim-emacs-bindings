@@ -53,6 +53,10 @@ imap <M-f> <C-o>e<Right>
 imap <M-a> <C-o>{
 imap <M-e> <C-o>}
 "  - editing
+imap <C-d> <Del>
+imap <C-h> <BS>
+imap <M-d> <C-o>dw
+imap <M-h> <Space><Left><C-o>db<Del>
 imap <C-k> <C-o>:call EmacsKillLine()<CR><Right>
 
 
