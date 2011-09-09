@@ -21,9 +21,9 @@ endfunction
 function! EmacsKillLine()
   let rest_of_line = getbufline("%", line('.'))[0][col('.') :]
   if len(rest_of_line) > 0
-    normal! D
+    normal D
   else
-    normal! Jh
+    normal Jh
   endif
 endfunction
 
@@ -53,7 +53,7 @@ imap <M-f> <C-o>e<Right>
 imap <M-a> <C-o>{
 imap <M-e> <C-o>}
 "  - editing
-imap imap <C-k> <C-o>:call EmacsKillLine()<CR>
+imap <C-k> <C-o>:call EmacsKillLine()<CR><Right>
 
 
 " command line mode
