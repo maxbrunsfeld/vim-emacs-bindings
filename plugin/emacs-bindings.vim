@@ -2,10 +2,6 @@
 " Inspired by a much more comprehensive plugin: Vimacs, by Andre Pang.
 
 " TODO
-"   normal and insert mode:
-"     - when cursor is on first non-blank character, <C-a> should go to beginning of line
-"   insert mode
-"     - when line is blank, <C-k> should delete entire line
 "   command mode:
 "     - <C-k> should not open command window
 
@@ -14,13 +10,30 @@ if has("gui_macvim")
   set macmeta
 endif
 
+function! EmacsHome()
+  let start_col = col('.')
+  normal! ^
+  if start_col == col('.')
+    normal! 0
+  endif
+endfunction
+
+function! EmacsKillLine()
+  let rest_of_line = getbufline("%", line('.'))[0][col('.') :]
+  if len(rest_of_line) > 0
+    normal! D
+  else
+    normal! Jh
+  endif
+endfunction
+
 " normal mode
 "  - navigation
 map <C-p> gk
 map <C-n> gj
 map <C-b> h
 map <C-f> l
-map <C-a> ^
+map <silent> <C-a> :call EmacsHome()<CR>
 map <C-e> $
 map <M-b> b
 map <M-f> e
@@ -33,18 +46,15 @@ imap <C-p> <Up>
 imap <C-n> <Down>
 imap <C-b> <Left>
 imap <C-f> <Right>
-imap <C-a> <C-o>^
+imap <C-a> <C-o>:call EmacsHome()<CR>
 imap <C-e> <End>
 imap <M-b> <C-o>b
 imap <M-f> <C-o>e<Right>
 imap <M-a> <C-o>{
 imap <M-e> <C-o>}
 "  - editing
-imap <C-d> <Del>
-imap <C-h> <BS>
-imap <M-d> <C-o>dw
-imap <M-h> <Space><Left><C-o>db<Del>
-imap <C-k> <C-o>D
+imap imap <C-k> <C-o>:call EmacsKillLine()<CR>
+
 
 " command line mode
 "  - navigation
