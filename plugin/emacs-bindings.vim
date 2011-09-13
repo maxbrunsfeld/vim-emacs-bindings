@@ -57,8 +57,7 @@ imap <C-d> <Del>
 imap <C-h> <BS>
 imap <M-d> <C-o>dw
 imap <M-h> <Space><Left><C-o>db<Del>
-imap <C-k> <C-o>:call EmacsKillLine()<CR><Right>
-
+imap <C-k> <Esc>:call EmacsKillLine()<CR>a
 
 " command line mode
 "  - navigation
