@@ -13,7 +13,7 @@ endif
 function! EmacsHome()
   let start_col = col('.')
   normal! ^
-  if start_col == col('.')
+  if col('.') == start_col
     normal! 0
   endif
 endfunction
@@ -21,11 +21,14 @@ endfunction
 function! EmacsKillLine()
   let line_text = getbufline("%", line('.'))[0]
   let text_after_cursor = line_text[col('.') :]
-  let text_before_cursor = line_text[: col('.') - 1]
-  if len(text_after_cursor) > 0
-    call setline(line('.'), text_before_cursor)
+
+  if len(text_after_cursor) == 0
+    normal! J
+  elseif col('.') == 1
+    call setline(line('.'), '')
   else
-    normal! Jh
+    let text_before_cursor = line_text[: col('.')-2]
+    call setline(line('.'), text_before_cursor)
   endif
 endfunction
 
@@ -59,7 +62,7 @@ imap <C-d> <Del>
 imap <C-h> <BS>
 imap <M-d> <C-o>dw
 imap <M-h> <Space><Left><C-o>db<Del>
-imap <C-k> <Esc>:call EmacsKillLine()<CR>a
+imap <C-k> <C-o>:call EmacsKillLine()<CR>
 
 " command line mode
 "  - navigation
