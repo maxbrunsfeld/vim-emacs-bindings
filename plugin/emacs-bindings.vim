@@ -19,9 +19,11 @@ function! EmacsHome()
 endfunction
 
 function! EmacsKillLine()
-  let rest_of_line = getbufline("%", line('.'))[0][col('.') :]
-  if len(rest_of_line) > 0
-    normal! D
+  let line_text = getbufline("%", line('.'))[0]
+  let text_after_cursor = line_text[col('.') :]
+  let text_before_cursor = line_text[: col('.') - 1]
+  if len(text_after_cursor) > 0
+    call setline(line('.'), text_before_cursor)
   else
     normal! Jh
   endif
