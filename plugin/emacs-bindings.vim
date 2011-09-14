@@ -20,18 +20,15 @@ function! EmacsHome()
 endfunction
 
 function! EmacsKillLine()
+  let col = col('.')
   let line_text = getline(line('.'))
-  let text_after_cursor = line_text[col('.')-1 :]
-  let text_before_cursor = line_text[: col('.')-2]
-
+  let text_after_cursor  = line_text[col-1 :]
+  let text_before_cursor = (col > 1) ? line_text[: col-2] : ''
   if len(text_after_cursor) == 0
     normal! J
-  elseif col('.') == 1
-    call setline(line('.'), '')
   else
     call setline(line('.'), text_before_cursor)
   endif
-
   return ''
 endfunction
 
