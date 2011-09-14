@@ -3,7 +3,7 @@
 
 " TODO
 "   command mode:
-"     - <C-k> should not open command window
+"     - <C-k> and <M-d> should not open command window
 
 " on macvim, use option as meta key
 if has("gui_macvim")
