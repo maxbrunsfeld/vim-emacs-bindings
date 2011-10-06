@@ -2,13 +2,8 @@
 " Inspired by a much more comprehensive plugin: Vimacs, by Andre Pang.
 
 " TODO
-"   command mode:
-"     - <C-k> and <M-d> should not open command window
-
-" on macvim, use option as meta key
-if has("gui_macvim")
-  set macmeta
-endif
+"   command mode: <C-k> and <M-d> should not open command window
+"
 
 function! s:home()
   let start_col = col('.')
@@ -22,10 +17,7 @@ inoremap <silent> <Plug>emacs_home <C-r>=<SID>home()<CR>
 noremap  <silent> <Plug>emacs_home :call <SID>home()<CR>
 
 function! s:kill_line()
-  let col = col('.')
-  let line_text = getline(line('.'))
-  let text_after_cursor  = line_text[col-1 :]
-  let text_before_cursor = (col > 1) ? line_text[: col-2] : ''
+  let [text_before_cursor, text_after_cursor] = s:split_line_text_at_cursor()
   if len(text_after_cursor) == 0
     normal! J
   else
@@ -36,16 +28,31 @@ endfunction
 inoremap <silent> <Plug>emacs_kill_line <C-r>=<SID>kill_line()<CR>
 
 function! s:delete_word_forwards()
-  normal! dw
+  normal! de
   return ''
 endfunction
-inoremap <silent> <Plug>emacs_delete_word_forwards  <C-r>=<SID>delete_word_forwards()<CR>
+inoremap <silent> <Plug>emacs_delete_word_forwards <C-r>=<SID>delete_word_forwards()<CR>
 
 function! s:delete_word_backwards()
   normal! db
   return ''
 endfunction
-inoremap <silent> <Plug>emacs_delete_word_backwards <C-r>=<SID>delete_word_backwards()<CR>
+inoremap <silent> <Plug>emacs_delete_word_backwards <Space><Left><C-r>=<SID>delete_word_backwards()<CR><Del>
+
+function! s:split_line_text_at_cursor()
+  let line_text = getline(line('.'))
+  let text_after_cursor  = line_text[col('.')-1 :]
+  let text_before_cursor = (col('.') > 1) ? line_text[: col('.')-2] : ''
+  return [text_before_cursor, text_after_cursor]
+endfunction
+
+inoremap <expr> <Plug>emacs_down pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Plug>emacs_up pumvisible() ? "\<C-p>" : "\<Up>"
+
+" on macvim, use option as meta key
+if has("gui_macvim")
+  set macmeta
+endif
 
 " normal mode
 "  - navigation
@@ -62,8 +69,8 @@ map <M-e> }
 
 " insert mode
 "  - navigation
-imap <C-p> <Up>
-imap <C-n> <Down>
+imap <C-p> <Plug>emacs_up
+imap <C-n> <Plug>emacs_down
 imap <C-b> <Left>
 imap <C-f> <Right>
 imap <C-a> <Plug>emacs_home
