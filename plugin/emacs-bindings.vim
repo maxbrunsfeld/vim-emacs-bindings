@@ -10,7 +10,7 @@ if has("gui_macvim")
   set macmeta
 endif
 
-function! EmacsHome()
+function! s:home()
   let start_col = col('.')
   normal! ^
   if col('.') == start_col
@@ -18,8 +18,10 @@ function! EmacsHome()
   endif
   return ''
 endfunction
+inoremap <silent> <Plug>emacs_home <C-r>=<SID>home()<CR>
+noremap  <silent> <Plug>emacs_home :call <SID>home()<CR>
 
-function! EmacsKillLine()
+function! s:kill_line()
   let col = col('.')
   let line_text = getline(line('.'))
   let text_after_cursor  = line_text[col-1 :]
@@ -31,6 +33,19 @@ function! EmacsKillLine()
   endif
   return ''
 endfunction
+inoremap <silent> <Plug>emacs_kill_line <C-r>=<SID>kill_line()<CR>
+
+function! s:delete_word_forwards()
+  normal! dw
+  return ''
+endfunction
+inoremap <silent> <Plug>emacs_delete_word_forwards  <C-r>=<SID>delete_word_forwards()<CR>
+
+function! s:delete_word_backwards()
+  normal! db
+  return ''
+endfunction
+inoremap <silent> <Plug>emacs_delete_word_backwards <C-r>=<SID>delete_word_backwards()<CR>
 
 " normal mode
 "  - navigation
@@ -38,7 +53,7 @@ map <C-p> gk
 map <C-n> gj
 map <C-b> h
 map <C-f> l
-map <silent> <C-a> :call EmacsHome()<CR>
+map <C-a> <Plug>emacs_home
 map <C-e> $
 map <M-b> b
 map <M-f> e
@@ -51,7 +66,7 @@ imap <C-p> <Up>
 imap <C-n> <Down>
 imap <C-b> <Left>
 imap <C-f> <Right>
-imap <C-a> <C-o>:call EmacsHome()<CR>
+imap <C-a> <Plug>emacs_home
 imap <C-e> <End>
 imap <M-b> <C-o>b
 imap <M-f> <C-o>e<Right>
@@ -60,9 +75,9 @@ imap <M-e> <C-o>}
 "  - editing
 imap <C-d> <Del>
 imap <C-h> <BS>
-imap <M-d> <C-o>dw
-imap <M-h> <Space><Left><C-o>db<Del>
-imap <C-k> <C-r>=EmacsKillLine()<CR>
+imap <M-d> <Plug>emacs_delete_word_forwards
+imap <M-h> <Plug>emacs_delete_word_backwards
+imap <C-k> <Plug>emacs_kill_line
 
 " command line mode
 "  - navigation
