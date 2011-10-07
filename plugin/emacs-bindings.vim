@@ -46,8 +46,10 @@ function! s:split_line_text_at_cursor()
   return [text_before_cursor, text_after_cursor]
 endfunction
 
-inoremap <expr> <Plug>emacs_down pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Plug>emacs_up pumvisible() ? "\<C-p>" : "\<Up>"
+nnoremap <Plug>emacs_up   gk
+nnoremap <Plug>emacs_down gj
+inoremap <expr> <Plug>emacs_up   pumvisible() ? "\<C-p>" : "\<C-o>gk"
+inoremap <expr> <Plug>emacs_down pumvisible() ? "\<C-n>" : "\<C-o>gj"
 
 " on macvim, use option as meta key
 if has("gui_macvim")
@@ -56,8 +58,8 @@ endif
 
 " normal mode
 "  - navigation
-map <C-p> gk
-map <C-n> gj
+map <C-p> <Plug>emacs_up
+map <C-n> <Plug>emacs_down
 map <C-b> h
 map <C-f> l
 map <C-a> <Plug>emacs_home
