@@ -13,8 +13,6 @@ function! s:home()
   endif
   return ''
 endfunction
-inoremap <silent> <Plug>emacs_home <C-r>=<SID>home()<CR>
-noremap  <silent> <Plug>emacs_home :call <SID>home()<CR>
 
 function! s:kill_line()
   let [text_before_cursor, text_after_cursor] = s:split_line_text_at_cursor()
@@ -25,19 +23,6 @@ function! s:kill_line()
   endif
   return ''
 endfunction
-inoremap <silent> <Plug>emacs_kill_line <C-r>=<SID>kill_line()<CR>
-
-function! s:delete_word_forwards()
-  normal! de
-  return ''
-endfunction
-inoremap <silent> <Plug>emacs_delete_word_forwards <C-r>=<SID>delete_word_forwards()<CR>
-
-function! s:delete_word_backwards()
-  normal! db
-  return ''
-endfunction
-inoremap <silent> <Plug>emacs_delete_word_backwards <Space><Left><C-r>=<SID>delete_word_backwards()<CR><Del>
 
 function! s:split_line_text_at_cursor()
   let line_text = getline(line('.'))
@@ -50,6 +35,11 @@ nnoremap <Plug>emacs_up   gk
 nnoremap <Plug>emacs_down gj
 inoremap <expr> <Plug>emacs_up   pumvisible() ? "\<C-p>" : "\<C-o>gk"
 inoremap <expr> <Plug>emacs_down pumvisible() ? "\<C-n>" : "\<C-o>gj"
+inoremap <silent> <Plug>emacs_home <C-r>=<SID>home()<CR>
+noremap  <silent> <Plug>emacs_home :call <SID>home()<CR>
+inoremap <silent> <Plug>emacs_kill_line <C-r>=<SID>kill_line()<CR>
+inoremap <silent> <Plug>emacs_delete_word_forwards <C-o>de
+inoremap <silent> <Plug>emacs_delete_word_backwards <Space><Left><C-o>db<Del>
 
 " on macvim, use option as meta key
 if has("gui_macvim")
