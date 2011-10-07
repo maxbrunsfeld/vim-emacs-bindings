@@ -38,7 +38,7 @@ inoremap <expr> <Plug>emacs_down pumvisible() ? "\<C-n>" : "\<C-o>gj"
 inoremap <silent> <Plug>emacs_home <C-r>=<SID>home()<CR>
 noremap  <silent> <Plug>emacs_home :call <SID>home()<CR>
 inoremap <silent> <Plug>emacs_kill_line <C-r>=<SID>kill_line()<CR>
-inoremap <silent> <Plug>emacs_delete_word_forwards <C-o>de
+inoremap <silent> <Plug>emacs_delete_word_forwards  <C-o>de
 inoremap <silent> <Plug>emacs_delete_word_backwards <Space><Left><C-o>db<Del>
 
 " on macvim, use option as meta key
@@ -94,7 +94,7 @@ cmap <M-e> <End>
 cnoremap <C-d> <Del>
 cnoremap <C-h> <BS>
 cnoremap <M-h> <C-w>
-cnoremap <M-d> <C-f>dwl<C-c>
+cnoremap <M-d> <C-f>de<C-c>
 cnoremap <C-k> <C-f>D<C-c><End>
 
 " command-T window
