@@ -46,19 +46,6 @@ if has("gui_macvim")
   set macmeta
 endif
 
-" normal mode
-"  - navigation
-map <C-p> <Plug>emacs_up
-map <C-n> <Plug>emacs_down
-map <C-b> h
-map <C-f> l
-map <C-a> <Plug>emacs_home
-map <C-e> $
-map <M-b> b
-map <M-f> e
-map <M-a> {
-map <M-e> }
-
 " insert mode
 "  - navigation
 imap <C-p> <Plug>emacs_up
@@ -102,4 +89,19 @@ let g:CommandTCursorLeftMap  = ['<Left>',  '<C-b>']
 let g:CommandTCursorRightMap = ['<Right>', '<C-f>']
 let g:CommandTBackspaceMap   = ['<BS>',    '<C-h>']
 let g:CommandTDeleteMap      = ['<Del>',   '<C-d>']
+
+" normal mode
+"  - navigation
+if exists('g:emacs_bindings_map_normal_mode') && g:emacs_bindings_map_normal_mode
+  map <C-p> <Plug>emacs_up
+  map <C-n> <Plug>emacs_down
+  map <C-b> h
+  map <C-f> l
+  map <C-a> <Plug>emacs_home
+  map <C-e> $
+  map <M-b> b
+  map <M-f> e
+  map <M-a> {
+  map <M-e> }
+endif
 
