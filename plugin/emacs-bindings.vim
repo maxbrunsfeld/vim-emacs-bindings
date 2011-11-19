@@ -31,10 +31,6 @@ function! s:split_line_text_at_cursor()
   return [text_before_cursor, text_after_cursor]
 endfunction
 
-nnoremap <Plug>emacs_up   gk
-nnoremap <Plug>emacs_down gj
-inoremap <expr> <Plug>emacs_up   pumvisible() ? "\<C-p>" : "\<C-o>gk"
-inoremap <expr> <Plug>emacs_down pumvisible() ? "\<C-n>" : "\<C-o>gj"
 inoremap <silent> <Plug>emacs_home <C-r>=<SID>home()<CR>
 noremap  <silent> <Plug>emacs_home :call <SID>home()<CR>
 inoremap <silent> <Plug>emacs_kill_line <C-r>=<SID>kill_line()<CR>
@@ -47,9 +43,6 @@ if has("gui_macvim")
 endif
 
 " insert mode
-"  - navigation
-imap <C-p> <Plug>emacs_up
-imap <C-n> <Plug>emacs_down
 imap <C-b> <Left>
 imap <C-f> <Right>
 imap <C-a> <Plug>emacs_home
@@ -58,7 +51,6 @@ imap <M-b> <C-o>b
 imap <M-f> <C-o>e<Right>
 imap <M-a> <C-o>{
 imap <M-e> <C-o>}
-"  - editing
 imap <C-d> <Del>
 imap <C-h> <BS>
 imap <M-d> <Plug>emacs_delete_word_forwards
@@ -66,7 +58,6 @@ imap <M-h> <Plug>emacs_delete_word_backwards
 imap <C-k> <Plug>emacs_kill_line
 
 " command line mode
-"  - navigation
 cmap <C-p> <Up>
 cmap <C-n> <Down>
 cmap <C-b> <Left>
@@ -77,7 +68,6 @@ cmap <M-f> <S-Right>
 cmap <M-b> <S-Left>
 cmap <M-a> <Home>
 cmap <M-e> <End>
-"  - editing
 cnoremap <C-d> <Del>
 cnoremap <C-h> <BS>
 cnoremap <M-h> <C-w>
@@ -91,10 +81,9 @@ let g:CommandTBackspaceMap   = ['<BS>',    '<C-h>']
 let g:CommandTDeleteMap      = ['<Del>',   '<C-d>']
 
 " normal mode
-"  - navigation
 if exists('g:emacs_bindings_map_normal_mode') && g:emacs_bindings_map_normal_mode
-  map <C-p> <Plug>emacs_up
-  map <C-n> <Plug>emacs_down
+  map <C-p> gk
+  map <C-n> gj
   map <C-b> h
   map <C-f> l
   map <C-a> <Plug>emacs_home
