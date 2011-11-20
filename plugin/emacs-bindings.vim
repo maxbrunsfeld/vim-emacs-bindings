@@ -31,8 +31,7 @@ function! s:split_line_text_at_cursor()
   return [text_before_cursor, text_after_cursor]
 endfunction
 
-inoremap <silent> <Plug>emacs_home <C-r>=<SID>home()<CR>
-noremap  <silent> <Plug>emacs_home :call <SID>home()<CR>
+inoremap <silent> <Plug>emacs_home <C-o>:call <SID>home()<CR>
 inoremap <silent> <Plug>emacs_kill_line <C-r>=<SID>kill_line()<CR>
 inoremap <silent> <Plug>emacs_delete_word_forwards  <C-o>de
 inoremap <silent> <Plug>emacs_delete_word_backwards <Space><Left><C-o>db<Del>
