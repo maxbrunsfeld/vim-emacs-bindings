@@ -1,9 +1,4 @@
-" Simple navigation and editing key bindings from emacs, for Vim.
-" Inspired by a much more comprehensive plugin: Vimacs, by Andre Pang.
-
-" TODO
-"   command mode: <C-k> and <M-d> should not open command window
-"
+" Basic cursor movement and deletion keybindings from emacs, for vim.
 
 " on macvim, use option as meta key
 if has("gui_macvim")
@@ -17,8 +12,6 @@ imap <C-a> <C-o>:call <SID>home()<CR>
 imap <C-e> <End>
 imap <M-b> <C-o>b
 imap <M-f> <C-o>e<Right>
-imap <M-a> <C-o>{
-imap <M-e> <C-o>}
 imap <C-d> <Del>
 imap <C-h> <BS>
 imap <M-d> <C-o>de
@@ -32,15 +25,13 @@ cmap <C-b> <Left>
 cmap <C-f> <Right>
 cmap <C-a> <Home>
 cmap <C-e> <End>
-cmap <M-f> <S-Right>
 cmap <M-b> <S-Left>
-cmap <M-a> <Home>
-cmap <M-e> <End>
+cmap <M-f> <S-Right>
 cnoremap <C-d> <Del>
 cnoremap <C-h> <BS>
+cnoremap <M-d> <S-Right><C-w>
 cnoremap <M-h> <C-w>
-cnoremap <M-d> <C-f>de<C-c>
-cnoremap <C-k> <C-f>D<C-c><End>
+cnoremap <C-k> <C-f>D<C-c><C-c>:<Up>
 
 " command-T window
 let g:CommandTCursorLeftMap  = ['<Left>',  '<C-b>']
