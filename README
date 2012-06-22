@@ -1,2 +1,2 @@
-This plugin adds the basic navigation and editing key bindings from emacs to vim. The bindings work in every mode, and in the prompt window for Command-T (http://www.vim.org/scripts/script.php?script_id=3025). This was inspired by Vimacs (http://algorithm.com.au/code/vimacs), a much more comprehensive plugin by Andre Pang.
+This plugin adds to vim the basic navigation and editing key bindings from emacs (shared by bash and cocoa text views). The bindings are added to insert and command-line modes, and in the prompt window for [Command-T](http://www.vim.org/scripts/script.php?script_id=3025).
 
